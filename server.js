@@ -15,14 +15,10 @@ var Message = mongoose.model('Message',{name : String, message : String});
 var dbUrl = 'mongodb://127.0.0.1:27017/simple-chat';
 
 
-var server = app.listen(3000, () => {
-    console.log('server is running on port', server.address().port);});
 
  
 
-    mongoose.connect(dbUrl, (err) => {
-        console.log('mongodb connected', err);
-    })
+
 
     app.get('/messages', (req, res) => {
         Message.find({},(err, messages)=> {
@@ -43,3 +39,9 @@ var server = app.listen(3000, () => {
     io.on('connection', () =>{
         console.log('a user is connected');
     })
+    mongoose.connect(dbUrl, (err) => {
+        console.log('mongodb connected', err);
+    })
+    
+ var server = http.listen(3000, () => {
+    console.log('server is running on port', server.address().port);});
